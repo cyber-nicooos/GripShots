@@ -741,7 +741,7 @@ footer{
         </div>
       </div>
       <div class="fade-up">
-        <form onsubmit="handleSubmit(event)" action="mailto:tbgripshots@gmail.com" method="post" enctype="text/plain">
+        <form action="https://formspree.io/f/mzdwbngw" method="POST">
           <div class="form-row">
             <div class="form-group">
               <label for="naam">Naam</label>
@@ -772,7 +772,11 @@ footer{
             <textarea id="bericht" name="bericht" placeholder="Vertel me over de shoot — locatievoorkeur, datum, speciale wensen..."></textarea>
           </div>
           <button type="submit" class="form-submit" id="submitBtn">Shoot aanvragen →</button>
-        </form>
+        
+  <input type="hidden" name="_subject" value="Nieuwe aanvraag via GripShots website">
+  <input type="hidden" name="_gotcha" style="display:none">
+
+</form>
       </div>
     </div>
   </div>
