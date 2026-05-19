@@ -741,7 +741,7 @@ footer{
         </div>
       </div>
       <div class="fade-up">
-        <form action="https://formspree.io/f/mzdwbngw" method="POST">
+        <form id="contact-form" action="https://formspree.io/f/mzdwbngw" method="POST">
           <div class="form-row">
             <div class="form-group">
               <label for="naam">Naam</label>
@@ -775,6 +775,9 @@ footer{
         
   <input type="hidden" name="_subject" value="Nieuwe aanvraag via GripShots website">
   <input type="hidden" name="_gotcha" style="display:none">
+
+
+<div id="form-status" style="margin-top:1rem;font-weight:600;"></div>
 
 </form>
       </div>
@@ -946,5 +949,40 @@ lightbox.addEventListener('touchend', e => {
     <div class="lightbox-counter" id="lb-counter"></div>
   </div>
 </div>
+
+<script>
+const form = document.getElementById("contact-form");
+const status = document.getElementById("form-status");
+
+if(form){
+  form.addEventListener("submit", async function(e){
+    e.preventDefault();
+
+    status.innerHTML = "Versturen...";
+
+    const data = new FormData(form);
+
+    try {
+      const response = await fetch(form.action, {
+        method: form.method,
+        body: data,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if(response.ok){
+        status.innerHTML = "✅ Bericht succesvol verzonden!";
+        form.reset();
+      } else {
+        status.innerHTML = "❌ Er ging iets mis. Probeer opnieuw.";
+      }
+    } catch(error){
+      status.innerHTML = "⚠️ Netwerkfout. Probeer later opnieuw.";
+    }
+  });
+}
+</script>
+
 </body>
 </html>
